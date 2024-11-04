@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System.Text;
 using Azure.Storage.Queues.Models;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 using FunctionProcessWeatherImage.Services;
-using FunctionProcessWeatherImage.Models;
-using Microsoft.ApplicationInsights.Extensibility.Implementation;
+using System.Text.Json;
+using Azure.Storage.Queues;
 
 namespace FunctionProcessWeatherImage
 {
@@ -12,29 +12,38 @@ namespace FunctionProcessWeatherImage
     {
         private readonly ILogger<ProcessWeatherImageFunction> _logger;
         private readonly WeatherService _weatherService;
+        private readonly QueueClient _stationQueueClient;
 
-        public ProcessWeatherImageFunction(ILogger<ProcessWeatherImageFunction> logger, WeatherService weatherService)
+        public ProcessWeatherImageFunction(
+            ILogger<ProcessWeatherImageFunction> logger, 
+            WeatherService weatherService, 
+            QueueClient stationQueueClient)
         {
             _logger = logger;
             _weatherService = weatherService;
+            _stationQueueClient = stationQueueClient;
         }
 
         [Function(nameof(ProcessWeatherImageFunction))]
         public async Task Run([QueueTrigger("jobstartqueue", Connection = "AzureWebJobsStorage")] QueueMessage message)
         {
-            _logger.LogInformation($"C# Queue trigger function processed: {message.MessageText}");
+            _logger.LogInformation($"Queue trigger function processed: {message.MessageText}");
 
             // Fetch weather data
-            var stationMeasurements = await _weatherService.GetWeatherDataAsync();
-            _logger.LogInformation($"Processing station measurements: {string.Join(", ", stationMeasurements)}");
-            
-            // foreach weatherstation --> new message op de queue
-            // Nieuwe azure functie die die message oppikt
-            // voor elk weerstation een image ophalen en dat combineren
-            // in de blobstorage opslaan
-            
-            // als dat gelukt is, dan een nieuwe functie die de blobs (per id) kan ophalen
-            
+            var weatherStations = await _weatherService.GetWeatherDataAsync();
+            _logger.LogInformation($"Processing station measurements: {string.Join(", ", weatherStations)}");
+
+            // Iterate over each WeatherStation and send a message to the station queue
+            foreach (var station in weatherStations)
+            {
+                var weatherStationMessage = JsonSerializer.Serialize(station);
+                var bytes = Encoding.UTF8.GetBytes(weatherStationMessage);
+                string base64Message = Convert.ToBase64String(bytes);
+
+                // Send the encoded message to the station queue
+                await _stationQueueClient.SendMessageAsync(base64Message);
+                _logger.LogInformation($"Sent message to station queue for station: {station.StationName}");
+            }
         }
     }
 }
