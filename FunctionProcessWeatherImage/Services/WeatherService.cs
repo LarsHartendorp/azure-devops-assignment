@@ -36,7 +36,7 @@ namespace FunctionProcessWeatherImage.Services
                     FeelTemperature = station.TryGetProperty("feeltemperature", out var feelTemperature) ? feelTemperature.GetDouble() : 0.0,
                     Humidity = station.TryGetProperty("humidity", out var humidity) ? humidity.GetDouble() : 0.0
                 };
-
+                Console.WriteLine(weatherStation);
                 weatherStations.Add(weatherStation);
             }
 

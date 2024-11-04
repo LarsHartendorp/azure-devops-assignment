@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StartJobFunction", "..\Star
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionProcessWeatherImage", "..\FunctionProcessWeatherImage\FunctionProcessWeatherImage.csproj", "{DFE0457E-CFA9-4F2C-B872-2B3CB069992A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenerateImageFunction", "..\GenerateImageFunction\GenerateImageFunction.csproj", "{C0D4C665-A415-4D8B-ABB6-2E8426F9C224}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{DFE0457E-CFA9-4F2C-B872-2B3CB069992A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFE0457E-CFA9-4F2C-B872-2B3CB069992A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DFE0457E-CFA9-4F2C-B872-2B3CB069992A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0D4C665-A415-4D8B-ABB6-2E8426F9C224}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0D4C665-A415-4D8B-ABB6-2E8426F9C224}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0D4C665-A415-4D8B-ABB6-2E8426F9C224}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0D4C665-A415-4D8B-ABB6-2E8426F9C224}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

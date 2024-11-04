@@ -1,8 +1,8 @@
 {
   "profiles": {
-    "ProcessWeatherImageFunction": {
+    "GenerateImageFunction": {
       "commandName": "Project",
-      "commandLineArgs": "--port 7156",
+      "commandLineArgs": "--port 7281",
       "launchBrowser": false
     }
   }
