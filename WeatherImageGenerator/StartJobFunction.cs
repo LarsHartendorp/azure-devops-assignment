@@ -27,7 +27,7 @@ namespace WeatherImageGenerator
             log.LogInformation($"Job ID {jobId} added to the queue for processing.");
 
             // Return a response with the job ID
-            var responseMessage = new { JobId = jobId, StatusUrl = $"https://your-api-url/status/{jobId}" };
+            var responseMessage = new { JobId = jobId};
             return new OkObjectResult(responseMessage);
         }
     }
