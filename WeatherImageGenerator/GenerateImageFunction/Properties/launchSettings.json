@@ -1,8 +1,8 @@
 {
   "profiles": {
-    "ExposeBlobFunction": {
+    "GenerateImageFunction": {
       "commandName": "Project",
-      "commandLineArgs": "--port 7048",
+      "commandLineArgs": "--port 7294",
       "launchBrowser": false
     }
   }

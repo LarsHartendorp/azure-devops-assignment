@@ -1,8 +1,8 @@
 {
   "profiles": {
-    "FunctionProcessWeatherImage": {
+    "StartJobFunction": {
       "commandName": "Project",
-      "commandLineArgs": "--port 7084",
+      "commandLineArgs": "--port 7104",
       "launchBrowser": false
     }
   }

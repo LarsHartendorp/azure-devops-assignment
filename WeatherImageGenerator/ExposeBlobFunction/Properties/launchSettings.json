@@ -1,8 +1,8 @@
 {
   "profiles": {
-    "StartJobFunction": {
+    "ExposeBlobFunction": {
       "commandName": "Project",
-      "commandLineArgs": "--port 7181",
+      "commandLineArgs": "--port 7100",
       "launchBrowser": false
     }
   }

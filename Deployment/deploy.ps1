@@ -5,7 +5,7 @@ param (
 )
 
 # Set project variables
-$solutionDirectory = "../"
+$solutionDirectory = "../WeatherImageGenerator"
 $prefix = "weatherapplication"
 $outputDirectory = "./publish"
 $bicepFile = "main.bicep"
