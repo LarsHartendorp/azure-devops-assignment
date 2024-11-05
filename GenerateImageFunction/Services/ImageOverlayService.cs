@@ -1,6 +1,5 @@
 ﻿using System.Drawing;
 using System.Drawing.Imaging;
-using System.IO;
 using FunctionProcessWeatherImage.Models;
 
 namespace FunctionGenerateWeatherImage.Services
@@ -15,12 +14,28 @@ namespace FunctionGenerateWeatherImage.Services
             using (var graphics = Graphics.FromImage(bitmap))
             {
                 var font = new Font("Arial", 20);
-                var brush = new SolidBrush(Color.Red);
-                var overlayText = $"Temp: {weatherStation.Temperature}°C\n" +
-                                  $"Feels Like: {weatherStation.FeelTemperature}°C\n" +
-                                  $"Humidity: {weatherStation.Humidity}%";
+                var textBrush = new SolidBrush(Color.White);
 
-                graphics.DrawString(overlayText, font, brush, new PointF(10, 10));
+                // Set up semi-transparent black/grey background brush
+                var backgroundBrush = new SolidBrush(Color.FromArgb(128, 0, 0, 0)); // 50% transparency, black color
+                
+                // Define overlay text
+                var overlayText = 
+                    $"Naam: {weatherStation.StationName}\n" +
+                    $"Plaats: {weatherStation.Region}\n" +
+                    $"Temp: {weatherStation.Temperature}°C\n" +
+                    $"Gevoels temp: {weatherStation.FeelTemperature}°C\n" +
+                    $"Vochtigheid: {weatherStation.Humidity}%";
+
+                // Measure the text size to fit background rectangle
+                var textSize = graphics.MeasureString(overlayText, font);
+
+                // Draw the semi-transparent background rectangle
+                var backgroundRect = new RectangleF(5, 5, textSize.Width + 10, textSize.Height + 10);
+                graphics.FillRectangle(backgroundBrush, backgroundRect);
+
+                // Draw the overlay text on top of the background rectangle
+                graphics.DrawString(overlayText, font, textBrush, new PointF(10, 10));
             }
 
             var resultStream = new MemoryStream();

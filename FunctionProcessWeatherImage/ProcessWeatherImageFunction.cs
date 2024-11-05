@@ -32,10 +32,13 @@ namespace FunctionProcessWeatherImage
             // Fetch weather data
             var weatherStations = await _weatherService.GetWeatherDataAsync();
             _logger.LogInformation($"Aantal weerstations opgehaald: {weatherStations.Count}");
-            
+
             // Iterate over each WeatherStation and send a message to the station queue
             foreach (var station in weatherStations)
             {
+                // Generate a new JobId using GUID
+                station.JobId = Guid.NewGuid().ToString();
+
                 var weatherStationMessage = JsonSerializer.Serialize(station);
                 Console.WriteLine(weatherStationMessage);
                 
@@ -44,7 +47,7 @@ namespace FunctionProcessWeatherImage
                 // Send the encoded message to the station queue
                 await _stationQueueClient.CreateIfNotExistsAsync();
                 await _stationQueueClient.SendMessageAsync(Convert.ToBase64String(bytes));
-                _logger.LogInformation($"Sent message to station queue for station: {station.StationName}");
+                _logger.LogInformation($"Sent message to station queue for station: {station.StationName} with JobId: {station.JobId}");
             }
         }
     }

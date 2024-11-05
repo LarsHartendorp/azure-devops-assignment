@@ -60,7 +60,7 @@ namespace FunctionProcessWeatherImage
             // Define the container and blob name
             var containerClient = _blobServiceClient.GetBlobContainerClient("weather-images");
             await containerClient.CreateIfNotExistsAsync();
-            var blobClient = containerClient.GetBlobClient($"{Guid.NewGuid()}.jpg");
+            var blobClient = containerClient.GetBlobClient($"{weatherStation.JobId}/{weatherStation.StationId}.jpg");
 
             // Upload the overlaid image to Blob Storage
             overlaidImageStream.Position = 0; // Reset the stream position for reading
