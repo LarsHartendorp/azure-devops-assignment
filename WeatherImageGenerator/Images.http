@@ -1,3 +1,0 @@
-@rootURL=http://localhost:7048
-
-GET {{rootURL}}/api/images
