@@ -2,7 +2,7 @@
   "profiles": {
     "GenerateImageFunction": {
       "commandName": "Project",
-      "commandLineArgs": "--port 7294",
+      "commandLineArgs": "--port 7195",
       "launchBrowser": false
     }
   }

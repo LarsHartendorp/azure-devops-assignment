@@ -2,11 +2,11 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StartJobFunction", "StartJobFunction\StartJobFunction.csproj", "{15C85E9F-1644-4677-87EE-7CC5878E2434}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionProcessWeatherImage", "FunctionProcessWeatherImage\FunctionProcessWeatherImage.csproj", "{8FB63203-F87A-4BD1-92ED-CA0E6DAB165D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenerateImageFunction", "GenerateImageFunction\GenerateImageFunction.csproj", "{2D43F350-C641-4381-8CFC-583C88C0BA13}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExposeBlobFunction", "ExposeBlobFunction\ExposeBlobFunction.csproj", "{70CC7A47-D73F-43F7-BFD7-E70A32316BE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenerateImageFunction", "GenerateImageFunction\GenerateImageFunction.csproj", "{2CEE866B-2D78-4431-AE59-2DC3DA04CD6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionProcessWeatherImage", "FunctionProcessWeatherImage\FunctionProcessWeatherImage.csproj", "{920B2537-D7FD-4B0D-A8EF-576AF6002B3E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,17 +18,17 @@ Global
 		{15C85E9F-1644-4677-87EE-7CC5878E2434}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15C85E9F-1644-4677-87EE-7CC5878E2434}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15C85E9F-1644-4677-87EE-7CC5878E2434}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8FB63203-F87A-4BD1-92ED-CA0E6DAB165D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8FB63203-F87A-4BD1-92ED-CA0E6DAB165D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8FB63203-F87A-4BD1-92ED-CA0E6DAB165D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8FB63203-F87A-4BD1-92ED-CA0E6DAB165D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2D43F350-C641-4381-8CFC-583C88C0BA13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2D43F350-C641-4381-8CFC-583C88C0BA13}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2D43F350-C641-4381-8CFC-583C88C0BA13}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2D43F350-C641-4381-8CFC-583C88C0BA13}.Release|Any CPU.Build.0 = Release|Any CPU
 		{70CC7A47-D73F-43F7-BFD7-E70A32316BE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{70CC7A47-D73F-43F7-BFD7-E70A32316BE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70CC7A47-D73F-43F7-BFD7-E70A32316BE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70CC7A47-D73F-43F7-BFD7-E70A32316BE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CEE866B-2D78-4431-AE59-2DC3DA04CD6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CEE866B-2D78-4431-AE59-2DC3DA04CD6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CEE866B-2D78-4431-AE59-2DC3DA04CD6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CEE866B-2D78-4431-AE59-2DC3DA04CD6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{920B2537-D7FD-4B0D-A8EF-576AF6002B3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{920B2537-D7FD-4B0D-A8EF-576AF6002B3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{920B2537-D7FD-4B0D-A8EF-576AF6002B3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{920B2537-D7FD-4B0D-A8EF-576AF6002B3E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
