@@ -21,7 +21,7 @@ if (-not $resourceGroupExists) {
 
 # Set project variables
 $solutionDirectory = "../WeatherApp"
-$prefix = "weatherapp1"
+$prefix = "weatherapp3"
 $outputDirectory = "./publish"
 $bicepFile = "main.bicep"
 
