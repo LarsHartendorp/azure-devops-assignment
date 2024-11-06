@@ -1,0 +1,10 @@
+﻿@rootUrlStartJob = https://weatherapp4startjobfunction.azurewebsites.net
+@uriStartJob = "vervang dit voor de daadwerkelijke uri (die vind je in azure) -> bijvoorbeeld '?code=jN2bb__wj3kEwa5UfnXdAmm2jLTuV4YqWs3f0u_kdyG-AzFuZreFAw%3D%3D'"
+@rootUrlExposeBlob = https://weatherapp4exposeblobfunction.azurewebsites.net
+@uriExposeBlob = "vervang dit voor de daadwerkelijke uri (die vind je in azure)"
+
+### 1. GET request naar StartJobFunction
+GET {{rootUrlStartJob}}/api/StartJobFunction{{uriStartJob}}
+
+### 2. GET request naar images endpoint
+GET {{rootUrlExposeBlob}}/api/images{{uriExposeBlob}}
