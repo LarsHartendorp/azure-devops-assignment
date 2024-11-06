@@ -1,0 +1,22 @@
+[
+  {
+    "name": "GenerateImageFunction",
+    "scriptFile": "GenerateImageFunction.dll",
+    "entryPoint": "GenerateImageFunction.GenerateImageFunction.RunAsync",
+    "language": "dotnet-isolated",
+    "properties": {
+      "IsCodeless": false
+    },
+    "bindings": [
+      {
+        "name": "queueMessage",
+        "direction": "In",
+        "type": "queueTrigger",
+        "dataType": "String",
+        "queueName": "stationqueue",
+        "connection": "AzureWebJobsStorage",
+        "properties": {}
+      }
+    ]
+  }
+]

@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionProcessWeatherImage
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenerateImageFunction", "GenerateImageFunction\GenerateImageFunction.csproj", "{9E4AC4F1-87EA-4132-9A3F-2455FCCEBC3A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExposeBlobFunction", "ExposeBlobFunction\ExposeBlobFunction.csproj", "{6758BE8B-BBC7-44E6-B25D-543E1233FE4E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{9E4AC4F1-87EA-4132-9A3F-2455FCCEBC3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E4AC4F1-87EA-4132-9A3F-2455FCCEBC3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E4AC4F1-87EA-4132-9A3F-2455FCCEBC3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6758BE8B-BBC7-44E6-B25D-543E1233FE4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6758BE8B-BBC7-44E6-B25D-543E1233FE4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6758BE8B-BBC7-44E6-B25D-543E1233FE4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6758BE8B-BBC7-44E6-B25D-543E1233FE4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
