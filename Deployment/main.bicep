@@ -5,7 +5,7 @@ var serverFarmName = '${prefix}sf'
 var storageAccountName = '${prefix}sta'
 
 var startJobFunctionName = '${prefix}StartJobFunction'
-// var processWeatherImageFunctionName = '${prefix}ProcessWeatherImage'
+var processWeatherImageFunctionName = '${prefix}FunctionProcessWeatherImage'
 // var generateImageFunctionName = '${prefix}GenerateImage'
 // var exposeBlobFunctionName = '${prefix}ExposeBlob'
 
@@ -72,6 +72,43 @@ resource startJobFunctionConfig 'Microsoft.Web/sites/config@2021-03-01' = {
     WEBSITE_USE_PLACEHOLDER_DOTNETISOLATED: '1'
     WEBSITE_RUN_FROM_PACKAGE: '1'
     AzureWebJobsStorage: storageAccountConnectionString
+    JobQueueName: 'jobstartqueue'
   }
 }
 
+// ProcessWeatherImage Function (Queue Trigger)
+resource processWeatherImageFunction 'Microsoft.Web/sites@2021-03-01' = {
+  name: processWeatherImageFunctionName
+  location: location
+  tags: resourceGroup().tags
+  identity: {
+    type: 'SystemAssigned'
+  }
+  kind: 'functionapp'
+  properties: {
+    enabled: true
+    serverFarmId: serverFarm.id
+    siteConfig: {
+      netFrameworkVersion: 'v8.0'
+      minTlsVersion: '1.2'
+      scmMinTlsVersion: '1.2'
+      http20Enabled: true
+    }
+    clientAffinityEnabled: false
+    httpsOnly: true
+    containerSize: 1536
+    redundancyMode: 'None'
+  }
+}
+
+resource processWeatherImageFunctionConfig 'Microsoft.Web/sites/config@2021-03-01' = {
+  name: '${processWeatherImageFunctionName}/appsettings'
+  properties: {
+    FUNCTIONS_EXTENSION_VERSION: '~4'
+    FUNCTIONS_WORKER_RUNTIME: 'dotnet-isolated'
+    WEBSITE_USE_PLACEHOLDER_DOTNETISOLATED: '1'
+    WEBSITE_RUN_FROM_PACKAGE: '1'
+    AzureWebJobsStorage: storageAccountConnectionString
+    StationQueueName: 'stationqueue' 
+  }
+}
