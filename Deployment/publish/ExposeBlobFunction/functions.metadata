@@ -1,0 +1,29 @@
+[
+  {
+    "name": "ExposeBlobFunction",
+    "scriptFile": "ExposeBlobFunction.dll",
+    "entryPoint": "ExposeBlobFunction.ExposeBlobFunction.Run",
+    "language": "dotnet-isolated",
+    "properties": {
+      "IsCodeless": false
+    },
+    "bindings": [
+      {
+        "name": "req",
+        "direction": "In",
+        "type": "httpTrigger",
+        "authLevel": "Function",
+        "methods": [
+          "get"
+        ],
+        "route": "images",
+        "properties": {}
+      },
+      {
+        "name": "$return",
+        "type": "http",
+        "direction": "Out"
+      }
+    ]
+  }
+]

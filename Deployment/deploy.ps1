@@ -29,8 +29,8 @@ $bicepFile = "main.bicep"
 $functionAppProjects = @(
     "StartJobFunction",
     "FunctionProcessWeatherImage",
-    "GenerateImageFunction"
-    # "ExposeBlobFunction"
+    "GenerateImageFunction",
+    "ExposeBlobFunction"
 )
 
 # Delete the output directory if it exists
