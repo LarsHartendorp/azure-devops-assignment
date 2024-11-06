@@ -4,9 +4,24 @@ param (
     [string]$location
 )
 
+# create resource group if it doesn't exist
+Write-Host "Checking if resource group $resourceGroup exists..."
+$resourceGroupExists = (az group exists --name $resourceGroup) -eq "true"
+
+if (-not $resourceGroupExists) {
+    Write-Host "Resource group $resourceGroup does not exist. Creating..."
+    az group create --name $resourceGroup --location $location
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "Failed to create resource group $resourceGroup. Exiting."
+        exit $LASTEXITCODE
+    }
+} else {
+    Write-Host "Resource group $resourceGroup already exists. Proceeding..."
+}
+
 # Set project variables
-$solutionDirectory = "../WeatherImageGenerator"
-$prefix = "weatherapplication"
+$solutionDirectory = "../WeatherApp"
+$prefix = "weatherapp3"
 $outputDirectory = "./publish"
 $bicepFile = "main.bicep"
 
