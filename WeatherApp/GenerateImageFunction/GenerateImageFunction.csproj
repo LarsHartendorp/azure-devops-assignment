@@ -5,6 +5,7 @@
         <OutputType>Exe</OutputType>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <OutputPath>bin\Release\net8.0\FunctionProcessWeatherImage\</OutputPath>
     </PropertyGroup>
     <ItemGroup>
         <FrameworkReference Include="Microsoft.AspNetCore.App"/>
@@ -28,5 +29,8 @@
     </ItemGroup>
     <ItemGroup>
         <Using Include="System.Threading.ExecutionContext" Alias="ExecutionContext"/>
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\FunctionProcessWeatherImage\FunctionProcessWeatherImage.csproj" />
     </ItemGroup>
 </Project>

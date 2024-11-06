@@ -28,8 +28,8 @@ $bicepFile = "main.bicep"
 # List of function apps in your solution
 $functionAppProjects = @(
     "StartJobFunction",
-    "FunctionProcessWeatherImage"
-    # "GenerateImageFunction",
+    "FunctionProcessWeatherImage",
+    "GenerateImageFunction"
     # "ExposeBlobFunction"
 )
 

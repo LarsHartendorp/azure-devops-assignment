@@ -1,6 +1,6 @@
 using Azure.Storage.Blobs;
 using Azure.Storage.Queues;
-
+using GenerateImageFunction.Services;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,9 +18,6 @@ var host = new HostBuilder()
 
         // Register BlobServiceClient
         services.AddSingleton(new BlobServiceClient(blobConnectionString));
-
-        // Register WeatherService
-        services.AddHttpClient<WeatherService>();
 
         services.AddApplicationInsightsTelemetryWorkerService();
         services.ConfigureFunctionsApplicationInsights();

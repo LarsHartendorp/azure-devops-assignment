@@ -6,7 +6,7 @@ var storageAccountName = '${prefix}sta'
 
 var startJobFunctionName = '${prefix}StartJobFunction'
 var processWeatherImageFunctionName = '${prefix}FunctionProcessWeatherImage'
-// var generateImageFunctionName = '${prefix}GenerateImage'
+var generateImageFunctionName = '${prefix}GenerateImageFunction'
 // var exposeBlobFunctionName = '${prefix}ExposeBlob'
 
 resource serverFarm 'Microsoft.Web/serverfarms@2021-03-01' = {
@@ -110,5 +110,44 @@ resource processWeatherImageFunctionConfig 'Microsoft.Web/sites/config@2021-03-0
     WEBSITE_RUN_FROM_PACKAGE: '1'
     AzureWebJobsStorage: storageAccountConnectionString
     StationQueueName: 'stationqueue' 
+  }
+}
+
+// generateImage Function (Queue Trigger)
+resource generateImageFunction 'Microsoft.Web/sites@2021-03-01' = {
+  name: generateImageFunctionName
+  location: location
+  tags: resourceGroup().tags
+  identity: {
+    type: 'SystemAssigned'
+  }
+  kind: 'functionapp'
+  properties: {
+    enabled: true
+    serverFarmId: serverFarm.id
+    siteConfig: {
+      netFrameworkVersion: 'v8.0'
+      minTlsVersion: '1.2'
+      scmMinTlsVersion: '1.2'
+      http20Enabled: true
+    }
+    clientAffinityEnabled: false
+    httpsOnly: true
+    containerSize: 1536
+    redundancyMode: 'None'
+  }
+}
+
+resource generateImageFunctionConfig 'Microsoft.Web/sites/config@2021-03-01' = {
+  name: '${generateImageFunctionName}/appsettings'
+  properties: {
+    FUNCTIONS_EXTENSION_VERSION: '~4'
+    FUNCTIONS_WORKER_RUNTIME: 'dotnet-isolated'
+    WEBSITE_USE_PLACEHOLDER_DOTNETISOLATED: '1'
+    WEBSITE_RUN_FROM_PACKAGE: '1'
+    AzureWebJobsStorage: storageAccountConnectionString
+    BlobStorageConnectionString: storageAccountConnectionString
+    StationQueueName: 'stationqueue'
+    BlobContainerName: 'weatherimages'
   }
 }
