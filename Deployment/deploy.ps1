@@ -4,9 +4,24 @@ param (
     [string]$location
 )
 
+# create resource group if it doesn't exist
+Write-Host "Checking if resource group $resourceGroup exists..."
+$resourceGroupExists = (az group exists --name $resourceGroup) -eq "true"
+
+if (-not $resourceGroupExists) {
+    Write-Host "Resource group $resourceGroup does not exist. Creating..."
+    az group create --name $resourceGroup --location $location
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "Failed to create resource group $resourceGroup. Exiting."
+        exit $LASTEXITCODE
+    }
+} else {
+    Write-Host "Resource group $resourceGroup already exists. Proceeding..."
+}
+
 # Set project variables
 $solutionDirectory = "../WeatherApp"
-$prefix = "weatherapplication"
+$prefix = "weatherapp1"
 $outputDirectory = "./publish"
 $bicepFile = "main.bicep"
 
@@ -28,7 +43,7 @@ New-Item -ItemType Directory -Path $outputDirectory -Force | Out-Null
 
 # Deploy the Bicep file to set up infrastructure
 Write-Host "Deploying infrastructure with Bicep file..."
-# az deployment group create --resource-group $resourceGroup --template-file $bicepFile --parameters location=$location
+az deployment group create --resource-group $resourceGroup --template-file $bicepFile --parameters location=$location
 
 # Check if Bicep deployment was successful
 if ($LASTEXITCODE -ne 0) {

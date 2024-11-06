@@ -1,13 +1,13 @@
 param location string = resourceGroup().location
 
-var prefix = 'weatherapplication'
+var prefix = 'weatherapp1'
 var serverFarmName = '${prefix}sf'
 var storageAccountName = '${prefix}sta'
 
-var startJobFunctionName = '${prefix}StartJob'
-var processWeatherImageFunctionName = '${prefix}ProcessWeatherImage'
-var generateImageFunctionName = '${prefix}GenerateImage'
-var exposeBlobFunctionName = '${prefix}ExposeBlob'
+var startJobFunctionName = '${prefix}StartJobFunction'
+// var processWeatherImageFunctionName = '${prefix}ProcessWeatherImage'
+// var generateImageFunctionName = '${prefix}GenerateImage'
+// var exposeBlobFunctionName = '${prefix}ExposeBlob'
 
 resource serverFarm 'Microsoft.Web/serverfarms@2021-03-01' = {
   name: serverFarmName
