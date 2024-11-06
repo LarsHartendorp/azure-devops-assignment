@@ -1,0 +1,23 @@
+[
+  {
+    "name": "ProcessWeatherImageFunction",
+    "scriptFile": "FunctionProcessWeatherImage.dll",
+    "entryPoint": "FunctionProcessWeatherImage.ProcessWeatherImageFunction.Run",
+    "language": "dotnet-isolated",
+    "properties": {
+      "IsCodeless": false
+    },
+    "bindings": [
+      {
+        "name": "message",
+        "direction": "In",
+        "type": "queueTrigger",
+        "queueName": "jobstartqueue",
+        "connection": "AzureWebJobsStorage",
+        "properties": {
+          "supportsDeferredBinding": "True"
+        }
+      }
+    ]
+  }
+]

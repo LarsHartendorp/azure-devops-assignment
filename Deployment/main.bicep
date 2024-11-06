@@ -1,13 +1,13 @@
 param location string = resourceGroup().location
 
-var prefix = 'weatherapplication'
+var prefix = 'weatherapp3'
 var serverFarmName = '${prefix}sf'
 var storageAccountName = '${prefix}sta'
 
-var startJobFunctionName = '${prefix}StartJob'
-var processWeatherImageFunctionName = '${prefix}ProcessWeatherImage'
-var generateImageFunctionName = '${prefix}GenerateImage'
-var exposeBlobFunctionName = '${prefix}ExposeBlob'
+var startJobFunctionName = '${prefix}StartJobFunction'
+var processWeatherImageFunctionName = '${prefix}FunctionProcessWeatherImage'
+var generateImageFunctionName = '${prefix}GenerateImageFunction'
+var exposeBlobFunctionName = '${prefix}ExposeBlobFunction'
 
 resource serverFarm 'Microsoft.Web/serverfarms@2021-03-01' = {
   name: serverFarmName
@@ -72,6 +72,7 @@ resource startJobFunctionConfig 'Microsoft.Web/sites/config@2021-03-01' = {
     WEBSITE_USE_PLACEHOLDER_DOTNETISOLATED: '1'
     WEBSITE_RUN_FROM_PACKAGE: '1'
     AzureWebJobsStorage: storageAccountConnectionString
+    JobQueueName: 'jobstartqueue'
   }
 }
 
@@ -108,11 +109,11 @@ resource processWeatherImageFunctionConfig 'Microsoft.Web/sites/config@2021-03-0
     WEBSITE_USE_PLACEHOLDER_DOTNETISOLATED: '1'
     WEBSITE_RUN_FROM_PACKAGE: '1'
     AzureWebJobsStorage: storageAccountConnectionString
-    QueueStorage: storageAccountConnectionString
+    StationQueueName: 'stationqueue' 
   }
 }
 
-// GenerateImage Function (Queue Trigger)
+// generateImage Function (Queue Trigger)
 resource generateImageFunction 'Microsoft.Web/sites@2021-03-01' = {
   name: generateImageFunctionName
   location: location
@@ -145,6 +146,9 @@ resource generateImageFunctionConfig 'Microsoft.Web/sites/config@2021-03-01' = {
     WEBSITE_USE_PLACEHOLDER_DOTNETISOLATED: '1'
     WEBSITE_RUN_FROM_PACKAGE: '1'
     AzureWebJobsStorage: storageAccountConnectionString
+    BlobStorageConnectionString: storageAccountConnectionString
+    StationQueueName: 'stationqueue'
+    BlobContainerName: 'weatherimages'
   }
 }
 
@@ -181,7 +185,7 @@ resource exposeBlobFunctionConfig 'Microsoft.Web/sites/config@2021-03-01' = {
     WEBSITE_USE_PLACEHOLDER_DOTNETISOLATED: '1'
     WEBSITE_RUN_FROM_PACKAGE: '1'
     AzureWebJobsStorage: storageAccountConnectionString
-    AzureWebJobsStorageKey: storageAccount.listKeys().keys[0].value
-    AzureAccountName: storageAccount.name
+    BlobStorageConnection: storageAccountConnectionString
+    BlobContainerName: 'weatherimages'
   }
 }
